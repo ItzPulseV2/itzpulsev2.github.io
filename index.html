@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eaglercraft Launcher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+</style>
+<link rel="stylesheet" href="styles.css">
+<link rel="shortcut icon" href="icons/account.ico" type="image/x-icon"/>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">Eaglercraft Launcher</div>
+  <div class="topbar-controls">
+    <span class="btn-close"></span><span class="btn-min"></span><span class="btn-max"></span>
+  </div>
+</div>
+
+<div class="launcher">
+  <div class="sidebar">
+    <div class="sidebar-profile">
+      <div class="profile-avatar"><img src="icons/account.ico" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.style.display='none'"></div>
+      <div>
+        <div class="profile-name">ItzPulse</div>
+        <div class="profile-sub">made by ItzPulseV2</div>
+      </div>
+      <div class="profile-arrow">▾</div>
+    </div>
+    <div class="sidebar-games">
+      <div class="game-item active" data-game="modern" onclick="selectGame('modern',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Grass_Block.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='🌿'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT:</div><div class="game-name">Modern Client</div></div>
+      </div>
+      <div class="game-item" data-game="tuff" onclick="selectGame('tuff',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Dirt_Block.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='💎'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT:</div><div class="game-name">Tuff Client</div></div>
+      </div>
+      <div class="game-item" data-game="eb" onclick="selectGame('eb',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Short_Sword.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='⚔️'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">EB Client</div></div>
+      </div>
+      <div class="game-item" data-game="resent" onclick="selectGame('resent',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Creeper_Face.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='🛡️'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">Resent Client</div></div>
+      </div>
+      <div class="game-item" data-game="death" onclick="selectGame('death',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Hacker_Face.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='💀'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">Death Client</div></div>
+      </div>
+      <div class="game-item" data-game="aero" onclick="selectGame('aero',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Mace.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='🌀'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">Aero Client</div></div>
+      </div>
+      <div class="game-item" data-game="1.16" onclick="selectGame('1.16',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/1.16.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='🧊'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">Eagler1.16</div></div>
+      </div>
+      <div class="game-item" data-game="galactic" onclick="selectGame('galactic',this)">
+        <div class="game-icon" style="background:#1a1a1a;"><img src="icons/Nether_Star.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentElement.textContent='🌌'"></div>
+        <div class="game-info"><div class="game-label">EAGLERCRAFT</div><div class="game-name">Galactic Client</div></div>
+      </div>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-link" onclick="openWhatsNew()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        What's New
+      </div>
+      <div class="sidebar-link" onclick="openSettings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        Settings
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="tabs" id="tabBar">
+      <div class="tab active" onclick="switchTab('play',this)">Play</div>
+      <div class="tab" onclick="switchTab('installations',this)">Socials</div>
+      <div class="tab" onclick="switchTab('realms',this)">About</div>
+      <div class="tab" onclick="switchTab('skins',this)">Skins</div>
+      <div class="tab" onclick="switchTab('patch',this)">Resource Packs</div>
+      <div class="tab" onclick="switchTabVideos('videos',this)">Videos</div>
+      <div class="quick-play" onclick="window.open('https://eaglercraft.com','_blank')"><span>⚡</span> EAGLERCRAFT</div>
+    </div>
+
+    <div id="tab-play" class="tab-panel active" style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+      <div class="play-scroll">
+        <div class="hero" id="heroSection">
+          <div class="hero-bg-img" id="heroBg"></div>
+        </div>
+        <div class="hero-controls">
+          <div class="hero-bottom">
+            <div class="version-selector" id="versionSelector" onclick="toggleVersionDropdown()" style="position:relative;">
+              <div class="version-icon" id="versionIcon"><img src="icons/Grass_Block.ico" style="width:100%;height:100%;object-fit:contain;" onerror="this.outerHTML='🌿'"></div>
+              <div class="version-info">
+                <div class="version-label" id="versionLabel">Latest release</div>
+                <div class="version-num" id="versionNum">WASM Build</div>
+              </div>
+              <div class="version-arrow" id="versionArrow">▾</div>
+              <!-- Dropdown -->
+              <div id="versionDropdown" style="display:none;position:absolute;bottom:110%;left:0;min-width:180px;background:#1e1e1e;border:1px solid #3a3a3a;border-radius:8px;overflow:hidden;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.5);">
+                <div class="ver-option" id="opt-js" onclick="selectVersion('js', event)">
+                  <span style="font-size:14px;">☕</span>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;" id="opt-js-label">Javascript Build</div>
+                    <div style="font-size:11px;color:#888;">Recommended · Wider compatibility</div>
+                  </div>
+                </div>
+                <div class="ver-option" id="opt-wasm" onclick="selectVersion('wasm', event)">
+                  <span style="font-size:14px;">⚡</span>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;" id="opt-wasm-label">WASM Build</div>
+                    <div style="font-size:11px;color:#888;">Faster · WebAssembly powered</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Tuff version number selector -->
+            <div class="version-selector" id="tuffVerSelector" onclick="toggleTuffVerDropdown()" style="position:relative;display:none;">
+              <div class="version-icon" style="font-size:14px;">📦</div>
+              <div class="version-info">
+                <div class="version-label">Tuff Version</div>
+                <div class="version-num" id="tuffVerNum">1_1UT15</div>
+              </div>
+              <div class="version-arrow" id="tuffVerArrow">▾</div>
+              <div id="tuffVerDropdown" style="display:none;position:absolute;bottom:110%;left:0;min-width:160px;background:#1e1e1e;border:1px solid #3a3a3a;border-radius:8px;overflow:hidden;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.5);max-height:220px;overflow-y:auto;">
+                <!-- Options generated by JS -->
+              </div>
+            </div>
+
+            <!-- Aero version number selector -->
+            <div class="version-selector" id="aeroVerSelector" onclick="toggleAeroVerDropdown()" style="position:relative;display:none;">
+              <div class="version-icon" style="font-size:14px;">📦</div>
+              <div class="version-info">
+                <div class="version-label">Aero Version</div>
+                <div class="version-num" id="aeroVerNum">1.0.7</div>
+              </div>
+              <div class="version-arrow" id="aeroVerArrow">▾</div>
+              <div id="aeroVerDropdown" style="display:none;position:absolute;bottom:110%;left:0;min-width:160px;background:#1e1e1e;border:1px solid #3a3a3a;border-radius:8px;overflow:hidden;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.5);max-height:220px;overflow-y:auto;">
+                <!-- Options generated by JS -->
+              </div>
+            </div>
+
+            <div style="flex:1;max-width:340px;">
+              <a id="playBtn" href="https://itzpulsev2.github.io/modernclient" target="_self" class="play-btn">▶ &nbsp;PLAY</a>
+            </div>
+            <div class="username-display" id="usernameDisplay">ItzPulse</div>
+          </div>
+        </div>
+
+        <!-- CLIENT DESCRIPTION -->
+        <div class="client-info-section">
+
+          <!-- Description panel (updates per client) -->
+          <div class="client-desc-panel">
+            <div class="client-desc-tag" id="clientDescTag">✦ ABOUT THIS CLIENT</div>
+            <div class="client-desc-text" id="clientDescText"></div>
+            <div class="client-features" id="clientFeatures"></div>
+          </div>
+
+          <!-- All clients overview -->
+          <div class="all-clients-title">🖥️ All Eaglercraft Clients</div>
+          <div class="all-clients-grid">
+
+            <div class="ac-card" onclick="selectGame('modern', document.querySelector('[data-game=modern]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#3a6e10,#1a3a00);">
+                <img src="icons/Grass_Block.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='🌿'">
+                <span>Modern Client</span>
+              </div>
+              <div class="ac-card-body">The all-rounder. Packed with HUD overlays, Toggle Sprint, FPS boosts and a sleek custom UI. Best for players who want a polished, feature-rich experience.</div>
+            </div>
+
+            <div class="ac-card" onclick="selectGame('tuff', document.querySelector('[data-game=tuff]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#1a5a9c,#0a2a50);">
+                <img src="icons/Dirt_Block.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='💎'">
+                <span>Tuff Client</span>
+              </div>
+              <div class="ac-card-body">A solid, stable client focused on performance and reliability. Great for players who want a clean, lag-free experience without unnecessary extras.</div>
+            </div>
+
+            <div class="ac-card" onclick="selectGame('eb', document.querySelector('[data-game=eb]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#7a1515,#3a0808);">
+                <img src="icons/Short_Sword.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='⚔️'">
+                <span>EB Client</span>
+              </div>
+              <div class="ac-card-body">Combat-focused client built for PvP. Includes hitbox enhancements, reach indicators and fast-paced combat tweaks to give you an edge in fights.</div>
+            </div>
+
+            <div class="ac-card" onclick="selectGame('resent', document.querySelector('[data-game=resent]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#7a5a00,#3a2a00);">
+                <img src="icons/Creeper_Face.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='🛡️'">
+                <span>Resent Client</span>
+              </div>
+              <div class="ac-card-body">Known for its clean design and powerful features. Resent offers advanced PvP tools, smooth animations and a competitive HUD ideal for ranked play.</div>
+            </div>
+
+            <div class="ac-card" onclick="selectGame('death', document.querySelector('[data-game=death]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#5a1a7a,#2a0a3a);">
+                <img src="icons/Hacker_Face.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='💀'">
+                <span>Death Client</span>
+              </div>
+              <div class="ac-card-body">The most feature-packed client. Includes advanced modules like KillAura, AutoFish, Velocity, Fly and more — for players who want full control.</div>
+            </div>
+
+            <div class="ac-card" onclick="selectGame('aero', document.querySelector('[data-game=aero]'))">
+              <div class="ac-card-header" style="background:linear-gradient(135deg,#0050a0,#001a40);">
+                <img src="icons/Mace.ico" style="width:28px;height:28px;object-fit:contain;" onerror="this.outerHTML='🌀'">
+                <span>Aero Client</span>
+              </div>
+              <div class="ac-card-body">Lightweight and ultra-fast. Aero is optimised for maximum FPS and minimal input lag — perfect for competitive players who prioritise raw performance.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- end play-scroll -->
+    </div>
+
+    <div id="tab-installations" class="tab-panel" style="flex:1;overflow-y:auto;">
+      <div class="socials-panel">
+        <div class="socials-header">
+          <h2>🌐 ItzPulseV2 Socials</h2>
+          <p>Follow along, join the community, and stay up to date!</p>
+        </div>
+        <div class="socials-grid">
+
+          <!-- Main YouTube -->
+          <div class="social-card youtube" onclick="window.open('https://youtube.com/@ItzPulseV2','_blank')">
+            <div class="social-card-banner">
+              <div class="social-banner-icon">
+                <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+              </div>
+              <div class="social-banner-label">YOUTUBE</div>
+            </div>
+            <div class="social-card-body">
+              <div class="social-card-name">ItzPulseV2</div>
+              <div class="social-card-desc">Main channel — Eaglercraft content, client showcases, tutorials and more.</div>
+              <div class="social-card-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+                Visit Channel
+              </div>
+            </div>
+          </div>
+
+          <!-- Second YouTube -->
+          <div class="social-card youtube2" onclick="window.open('https://youtube.com/@ItzPulseV2-Extras','_blank')">
+            <div class="social-card-banner">
+              <div class="social-banner-icon">
+                <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+              </div>
+              <div class="social-banner-label">YOUTUBE — EXTRAS</div>
+            </div>
+            <div class="social-card-body">
+              <div class="social-card-name">ItzPulseV2 — Extras</div>
+              <div class="social-card-desc">Second channel — bonus content, behind the scenes, extra clips and experiments.</div>
+              <div class="social-card-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+                Visit Channel
+              </div>
+            </div>
+          </div>
+
+          <!-- Discord -->
+          <div class="social-card discord" onclick="window.open('https://discord.com/invite/stDZJQh4rK','_blank')">
+            <div class="social-card-banner">
+              <div class="social-banner-icon">
+                <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3c-.2.4-.5.9-.7 1.3a18.3 18.3 0 00-5.5 0A13 13 0 008.6 3a19.7 19.7 0 00-4.9 1.4C.5 8.7-.3 12.9.1 17a20 20 0 006.1 3.1 15 15 0 001.3-2.1 13 13 0 01-2-.97l.5-.4a14.2 14.2 0 0012.2 0l.5.4a13 13 0 01-2 1 15 15 0 001.3 2A19.9 19.9 0 0024 17c.4-4.7-.7-8.9-3.7-12.6zM8 14.5c-1.2 0-2.1-1.1-2.1-2.4S6.8 9.7 8 9.7s2.1 1.1 2.1 2.4-1 2.4-2.1 2.4zm8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-1 2.4-2.1 2.4z"/></svg>
+              </div>
+              <div class="social-banner-label">DISCORD</div>
+            </div>
+            <div class="social-card-body">
+              <div class="social-card-name">ItzPulseV2 Discord</div>
+              <div class="social-card-desc">Join the community server — chat, get support, share clips and hang out!</div>
+              <div class="social-card-btn discord-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3c-.2.4-.5.9-.7 1.3a18.3 18.3 0 00-5.5 0A13 13 0 008.6 3a19.7 19.7 0 00-4.9 1.4C.5 8.7-.3 12.9.1 17a20 20 0 006.1 3.1 15 15 0 001.3-2.1 13 13 0 01-2-.97l.5-.4a14.2 14.2 0 0012.2 0l.5.4a13 13 0 01-2 1 15 15 0 001.3 2A19.9 19.9 0 0024 17c.4-4.7-.7-8.9-3.7-12.6zM8 14.5c-1.2 0-2.1-1.1-2.1-2.4S6.8 9.7 8 9.7s2.1 1.1 2.1 2.4-1 2.4-2.1 2.4zm8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-1 2.4-2.1 2.4z"/></svg>
+                Join Server
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-realms" class="tab-panel" style="flex:1;overflow-y:auto;">
+      <div class="about-panel">
+
+        <div class="about-hero">
+          <div class="about-avatar">
+            <img src="icons/account.ico" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none'">
+          </div>
+          <div class="about-hero-text">
+            <h1 class="about-name">ItzPulse</h1>
+            <p class="about-tagline">Minecraft Content Creator · PvP · Building · Redstone · SMP</p>
+            <div class="about-badges">
+              <span class="badge badge-red">🎮 Content Creator</span>
+              <span class="badge badge-green">⚔️ PvP Player</span>
+              <span class="badge badge-blue">🏗️ Builder</span>
+              <span class="badge badge-purple">⚙️ Redstone</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-card">
+            <div class="about-card-icon">👤</div>
+            <h3>Who I Am</h3>
+            <p>I'm ItzPulse, a Minecraft content creator focused on PvP, building, redstone, and SMP/edit content. I enjoy creating entertaining videos, improving my skills, and building a community around Minecraft and gaming.</p>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-icon">🎬</div>
+            <h3>What I Do</h3>
+            <p>I create Minecraft Shorts and videos, play Eaglercraft clients, and engage with the community through fun and entertaining gaming content.</p>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-icon">🔥</div>
+            <h3>My Passion</h3>
+            <p>My passion is creating entertaining Minecraft content, improving my PvP/building skills, and building a fun community where people can chill and enjoy gaming together.</p>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-icon">🚀</div>
+            <h3>Future Plans</h3>
+            <p>I'm constantly working on new projects, improvements, and ways to better serve my community. Stay tuned for exciting announcements and updates across all my platforms!</p>
+          </div>
+
+        </div>
+
+        <div class="about-links">
+          <button class="about-link-btn yt" onclick="window.open('https://youtube.com/@ItzPulseV2','_blank')">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+            Main Channel
+          </button>
+          <button class="about-link-btn yt2" onclick="window.open('https://youtube.com/@ItzPulseV2-Extras','_blank')">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+            Extras Channel
+          </button>
+          <button class="about-link-btn dc" onclick="window.open('https://discord.com/invite/stDZJQh4rK','_blank')">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3c-.2.4-.5.9-.7 1.3a18.3 18.3 0 00-5.5 0A13 13 0 008.6 3a19.7 19.7 0 00-4.9 1.4C.5 8.7-.3 12.9.1 17a20 20 0 006.1 3.1 15 15 0 001.3-2.1 13 13 0 01-2-.97l.5-.4a14.2 14.2 0 0012.2 0l.5.4a13 13 0 01-2 1 15 15 0 001.3 2A19.9 19.9 0 0024 17c.4-4.7-.7-8.9-3.7-12.6zM8 14.5c-1.2 0-2.1-1.1-2.1-2.4S6.8 9.7 8 9.7s2.1 1.1 2.1 2.4-1 2.4-2.1 2.4zm8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-1 2.4-2.1 2.4z"/></svg>
+            Discord Server
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="tab-skins" class="tab-panel" style="flex:1;overflow-y:auto;">
+      <div class="skins-panel">
+
+        <!-- Hero -->
+        <div class="skins-hero">
+          <div class="skins-hero-left">
+            <div class="skins-hero-tag">✨ CUSTOMIZE YOUR CHARACTER</div>
+            <h1 class="skins-hero-title">Minecraft Skins</h1>
+            <p class="skins-hero-desc">Stand out from the crowd with a unique skin. Browse thousands of community-made skins, find your perfect look, and show off your style in-game.</p>
+            <button class="skins-main-btn" onclick="window.open('https://www.planetminecraft.com/skins/','_blank')">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+              Browse All Skins
+            </button>
+          </div>
+          <div class="skins-hero-right">
+            <div class="skin-showcase">
+              <div class="skin-char skin-char-1"><img src="icons/question mark.ico" style="width:100px;height:100px;object-fit:contain;" onerror="this.outerHTML='🧍'"></div>
+              <div class="skin-char skin-char-2"><img src="icons/question mark.ico" style="width:130px;height:130px;object-fit:contain;" onerror="this.outerHTML='🧍'"></div>
+              <div class="skin-char skin-char-3"><img src="icons/question mark.ico" style="width:100px;height:100px;object-fit:contain;" onerror="this.outerHTML='🧍'"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="skins-section-title">Browse by Category</div>
+        <div class="skins-categories">
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/tag/pvp/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#c0392b,#7a1515);"><img src="icons/pvpskin.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='⚔️'"></div>
+            <div class="skin-cat-name">PvP</div>
+            <div class="skin-cat-desc">Warrior & fighter skins</div>
+          </div>
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/tag/cool/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#2980b9,#1a5a9c);"><img src="icons/coolskin.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='😎'"></div>
+            <div class="skin-cat-name">Cool</div>
+            <div class="skin-cat-desc">Stylish & trendy skins</div>
+          </div>
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/tag/anime/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#8e44ad,#5a1a7a);"><img src="icons/animeskin.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='✨'"></div>
+            <div class="skin-cat-name">Anime</div>
+            <div class="skin-cat-desc">Anime character skins</div>
+          </div>
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/tag/fantasy/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#27ae60,#1a7a40);"><img src="icons/Short_Sword.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='🧙'"></div>
+            <div class="skin-cat-name">Fantasy</div>
+            <div class="skin-cat-desc">Magical & mythical skins</div>
+          </div>
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/tag/superhero/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#e67e22,#a04010);"><img src="icons/Creeper_Face.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='🦸'"></div>
+            <div class="skin-cat-name">Superhero</div>
+            <div class="skin-cat-desc">Hero & villain skins</div>
+          </div>
+          <div class="skin-cat-card" onclick="window.open('https://www.planetminecraft.com/skins/','_blank')">
+            <div class="skin-cat-icon" style="background:linear-gradient(135deg,#555,#333);"><img src="icons/Grass_Block.ico" style="width:32px;height:32px;object-fit:contain;" onerror="this.outerHTML='🔍'"></div>
+            <div class="skin-cat-name">All Skins</div>
+            <div class="skin-cat-desc">Browse everything</div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="skins-section-title">How To Apply a Skin</div>
+        <div class="skins-steps">
+          <div class="skin-step">
+            <div class="skin-step-num">1</div>
+            <div class="skin-step-text">
+              <div class="skin-step-title">Find Your Skin</div>
+              <div class="skin-step-desc">Browse Planet Minecraft and click a skin you like.</div>
+            </div>
+          </div>
+          <div class="skin-step-arrow">→</div>
+          <div class="skin-step">
+            <div class="skin-step-num">2</div>
+            <div class="skin-step-text">
+              <div class="skin-step-title">Download It</div>
+              <div class="skin-step-desc">Hit the download button to save the .png file.</div>
+            </div>
+          </div>
+          <div class="skin-step-arrow">→</div>
+          <div class="skin-step">
+            <div class="skin-step-num">3</div>
+            <div class="skin-step-text">
+              <div class="skin-step-title">Apply In-Game</div>
+              <div class="skin-step-desc">Upload it in Eaglercraft's skin menu and you're done!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="skins-cta">
+          <div class="skins-cta-text">
+            <div style="font-size:18px;font-weight:800;margin-bottom:6px;">Ready to find your perfect skin?</div>
+            <div style="font-size:13px;color:var(--text-secondary);">Thousands of free skins on Planet Minecraft — updated daily by the community.</div>
+          </div>
+          <button class="skins-main-btn" onclick="window.open('https://www.planetminecraft.com/skins/','_blank')">
+            Visit Planet Minecraft ↗
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="tab-patch" class="tab-panel" style="flex:1;overflow-y:auto;">
+      <div class="rp-panel">
+
+        <div class="rp-header">
+          <h2><img src="icons/Resource%20packs.ico" style="width:24px;height:24px;object-fit:contain;vertical-align:middle;margin-right:8px;" onerror="this.outerHTML='🎨'"> Resource Packs</h2>
+          <p>Recommended resource packs to enhance your Eaglercraft experience.</p>
+        </div>
+
+        <div class="rp-grid">
+
+          <!-- Bare Bones -->
+          <div class="rp-card">
+            <div class="rp-card-banner" style="background:linear-gradient(135deg,#c8622a,#7a3010);">
+              <div class="rp-banner-icon">🧱</div>
+              <div class="rp-banner-tag">TEXTURE PACK</div>
+            </div>
+            <div class="rp-card-body">
+              <div class="rp-card-top">
+                <div class="rp-card-name">Bare Bones</div>
+                <div class="rp-card-badge" style="background:rgba(200,98,42,0.2);color:#e8824a;border-color:rgba(200,98,42,0.3);">⭐ Favourite</div>
+              </div>
+              <div class="rp-card-desc">Probably my favourite resource pack. Simplifies Minecraft's textures to a clean, flat art style — makes everything look crisp and easy to read in PvP.</div>
+              <div class="rp-card-actions">
+                <button class="rp-btn rp-btn-primary" onclick="window.open('https://modrinth.com/resourcepack/bare-bones','_blank')">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  Use Pack
+                </button>
+                <button class="rp-btn rp-btn-ghost" onclick="window.open('https://modrinth.com/resourcepack/bare-bones','_blank')">
+                  View on Modrinth ↗
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small Held Items -->
+          <div class="rp-card">
+            <div class="rp-card-banner" style="background:linear-gradient(135deg,#2a7ac8,#103a7a);">
+              <div class="rp-banner-icon">🗡️</div>
+              <div class="rp-banner-tag">GAMEPLAY PACK</div>
+            </div>
+            <div class="rp-card-body">
+              <div class="rp-card-top">
+                <div class="rp-card-name">Small Held Items</div>
+                <div class="rp-card-badge" style="background:rgba(42,122,200,0.2);color:#4a9ae8;border-color:rgba(42,122,200,0.3);">🔥 Crucial</div>
+              </div>
+              <div class="rp-card-desc">VERY crucial resource pack. Shrinks held items so they take up less screen space — gives you way better visibility during PvP and general gameplay.</div>
+              <div class="rp-card-actions">
+                <button class="rp-btn rp-btn-primary" style="background:#2a7ac8;box-shadow:0 4px 14px rgba(42,122,200,0.4);" onclick="window.open('https://modrinth.com/resourcepack/small-held-items','_blank')">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  Use Pack
+                </button>
+                <button class="rp-btn rp-btn-ghost" onclick="window.open('https://modrinth.com/resourcepack/small-held-items','_blank')">
+                  View on Modrinth ↗
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Low On Fire -->
+          <div class="rp-card">
+            <div class="rp-card-banner" style="background:linear-gradient(135deg,#c8a02a,#7a5a00);">
+              <div class="rp-banner-icon">🔥</div>
+              <div class="rp-banner-tag">VISUAL PACK</div>
+            </div>
+            <div class="rp-card-body">
+              <div class="rp-card-top">
+                <div class="rp-card-name">Low On Fire</div>
+                <div class="rp-card-badge" style="background:rgba(200,160,42,0.2);color:#e8c04a;border-color:rgba(200,160,42,0.3);">💡 Quality of Life</div>
+              </div>
+              <div class="rp-card-desc">I mean... Lowers the fire overlay on screen when you're burning so you can actually see what's happening. Essential for any serious player.</div>
+              <div class="rp-card-actions">
+                <button class="rp-btn rp-btn-primary" style="background:#b8860b;box-shadow:0 4px 14px rgba(200,160,42,0.4);" onclick="window.open('https://modrinth.com/resourcepack/low-on-fire','_blank')">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  Use Pack
+                </button>
+                <button class="rp-btn rp-btn-ghost" onclick="window.open('https://modrinth.com/resourcepack/low-on-fire','_blank')">
+                  View on Modrinth ↗
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- VIDEOS TAB -->
+    <div id="tab-videos" class="tab-panel" style="flex:1;overflow-y:auto;">
+      <div class="videos-panel">
+        <div class="videos-header">
+          <h2>Videos</h2>
+          <p>Cool videos 😎</p>
+          <div class="videos-quality-bar">
+            <span class="vq-label">Quality:</span>
+            <button class="vq-btn active" id="vq-1080" onclick="setQuality('1080p')">1080p</button>
+            <button class="vq-btn" id="vq-4k" onclick="setQuality('4k')">4K</button>
+          </div>
+        </div>
+
+        <!-- Main player -->
+        <div class="video-player-wrap">
+          <video id="mainVideoPlayer" controls preload="metadata" style="width:100%;border-radius:10px;background:#000;max-height:420px;display:block;">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-player-title" id="videoPlayerTitle">No video selected</div>
+        </div>
+
+        <!-- Playlist -->
+        <div class="video-playlist-title">📋 Playlist</div>
+        <div class="video-list" id="videoList">
+          <div class="video-list-empty">Loading videos...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="launcher-version">6.7.2026 — ItzPulseV2</div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" onclick="if(event.target===this)closeSettings()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <div class="settings-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        Settings
+      </div>
+      <button class="settings-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="settings-body">
+      <div class="settings-section">
+        <div class="settings-section-title">🎵 Audio</div>
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <div class="settings-row-name">Background Music</div>
+            <div class="settings-row-desc">Play music from your <code>music/</code> folder</div>
+          </div>
+          <div class="settings-toggle" onclick="toggleMusic()">
+            <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
+            <span class="toggle-label" id="toggleLabel">OFF</span>
+          </div>
+        </div>
+        <div class="settings-row" id="nowPlayingRow" style="display:none;">
+          <div class="settings-row-info">
+            <div class="settings-row-name">Now Playing</div>
+            <div class="settings-row-desc" id="nowPlayingText">—</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="settings-mini-btn" onclick="prevTrack()">⏮</button>
+            <button class="settings-mini-btn" onclick="nextTrack()">⏭</button>
+          </div>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">🖥️ Window</div>
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <div class="settings-row-name">Close Launcher</div>
+            <div class="settings-row-desc">Close this window</div>
+          </div>
+          <button class="settings-danger-btn" onclick="closeWindow()">Close Window</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHAT'S NEW MODAL -->
+<div id="whatsnewModal" onclick="if(event.target===this)closeWhatsNew()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div class="whatsnew-panel">
+
+    <div class="whatsnew-header">
+      <div class="whatsnew-header-left">
+        <span class="whatsnew-header-tag">NEW</span>
+        <span class="whatsnew-title">What's New</span>
+      </div>
+      <button class="whatsnew-close" onclick="closeWhatsNew()">✕</button>
+    </div>
+
+    <div class="whatsnew-body">
+
+      <!-- Main Article: Solfar Cube -->
+      <div class="wn-article">
+        <img src="background-img/cube.png" alt="Solfar Cube" class="wn-article-img" onerror="this.style.display='none'">
+        <div class="wn-article-content">
+          <div class="wn-article-meta">
+            <span class="wn-article-category">🆕 Game Drop</span>
+            <span class="wn-article-date">June 16, 2026</span>
+          </div>
+          <div class="wn-article-title">Chaos Cubed — The Sulfur Cube Update</div>
+          <div class="wn-article-body">
+            <p>The Minecraft <strong>"Chaos Cubed"</strong> update releases on <strong>June 16, 2026</strong>, introducing the brand-new <strong>Sulfur Cube mob</strong> alongside underground and rare surface <strong>Sulfur Caves</strong>. Sulfur Cubes can absorb different blocks to take on their physics — bouncing, sliding, or becoming heavy — and can even be transported in buckets.</p>
+
+            <p><strong>🟡 Sulfur Cube Mobs</strong></p>
+            <ul>
+              <li>Passive mobs that spawn naturally inside Sulfur Caves</li>
+              <li>Feeding them a block changes their behaviour and physical properties — wool makes them float, netherite makes them sink</li>
+              <li>Can be <strong>sheared</strong>, <strong>leashed</strong>, and fed slime balls to grow larger</li>
+              <li>Pick them up and carry them in <strong>buckets</strong> just like axolotls</li>
+              <li>Take increased knockback when hit with enchanted weapons</li>
+            </ul>
+
+            <p><strong>🌋 Sulfur Caves &amp; Springs</strong></p>
+            <ul>
+              <li>A brand-new biome spanning deep underground and occasionally breaking through to the surface</li>
+              <li>Features <strong>erupting geysers</strong> — potent sulfur reacting violently with magma blocks</li>
+              <li>Noxious gas effects, Cave Spider spawns, and new block sets including <strong>Cinnabar</strong> and <strong>Sulfur blocks</strong></li>
+              <li>Geysers properly emit vibrations, triggering sculk sensors in the area</li>
+            </ul>
+
+            <p><strong>🔧 Pre-Release 4 Tweaks</strong></p>
+            <ul>
+              <li>Sulfur Cubes now take increased knockback from enchanted weapons</li>
+              <li>Geysers correctly emit sculk sensor vibrations</li>
+              <li>Polished mob collision logic and refined block textures across both Java and Bedrock</li>
+            </ul>
+
+            <p>The Chaos Cubed update is shaping up to be one of the most unique drops in Minecraft history. Whether you're exploring deep caves or taming your own physics-defying cube companion, there's something new for everyone.</p>
+
+            <a href="https://itzpulsev2.github.io/Things/index" id="betaPlayBtn" class="wn-beta-btn" target="_blank" rel="noopener">▶ Play Beta Eagler1.21.11</a>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
