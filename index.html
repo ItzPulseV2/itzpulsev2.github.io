@@ -248,7 +248,7 @@ function linkCard(av,title,sub,href,label,cls){
  return '<div class="card"><div class="ban" style="background:'+BG[av]+'"><img src="'+AV[av]+'" alt=""></div><div class="in"><h3>'+title+'</h3><small>'+sub+'</small><a class="play '+cls+'" href="'+href+'" target="_blank" rel="noopener noreferrer">'+label+'</a></div></div>'
 }
 $("#ytg").innerHTML=linkCard(0,"ItzPulseV2","@ItzPulseV2","https://youtube.com/@ItzPulseV2","Visit channel","yt")+linkCard(1,"ItzPulseV2 Extras","@ItzPulseV2-Extras","https://youtube.com/@ItzPulseV2-Extras","Visit channel","yt");
-$("#dcg").innerHTML=linkCard(2,"Eaglercraft Discord","Join the community server","https://discord.gg/stDZJQh4rK","Join server","dc");
+$("#dcg").innerHTML=linkCard(2,"ItzPulse Discord","Join the community server","https://discord.gg/stDZJQh4rK","Join server","dc");
 function openMenu(i,btn){
  var p=PROFILES[i],m=$("#menu");
  if(m.classList.contains("on")&&m.dataset.i==i){m.classList.remove("on");return}
