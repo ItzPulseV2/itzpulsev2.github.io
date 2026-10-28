@@ -1,0 +1,20 @@
+CHROMIUM CLIENT by maz_35
+
+How to play:
+  1. Unzip this whole folder (right-click, Extract All).
+  2. Double-click "Chromium Native Ping.exe"  <- best, native ping
+     or "Chromium Launcher.html" (normal relay).
+  3. Pick an instance and press Play.
+
+NATIVE PING
+  "Chromium Native Ping.exe" lets the game connect straight from your PC to
+  the server, like Java Minecraft. No relay in the middle = lower ping.
+  Keep its black window open while you play. Close it to go back to normal.
+  You'll see "Native Ping ON" in the top right when the game starts.
+  Windows may say "Windows protected your PC" the first time:
+  click More info, then Run anyway.
+
+Keep all the files together in the same folder.
+Best in Chrome or Edge. No website needed.
+
+Newest version: https://chromiumclient.com
